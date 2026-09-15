@@ -5,7 +5,7 @@
 
 import { useRouter } from "expo-router"; //Acesso ao objeto Router, tem a função de navegação baseada em arquivos.
 
-import Gamecard from "./components/Gamecard"; //Reutilizar componentes, isso evita duplicação e mentem a consistencia visual.
+import GameCard from "./components/Gamecard"; //Reutilizar componentes, isso evita duplicação e mentem a consistencia visual.
 
 import { jogos } from "./data/jogos" //Importante array de objetos do arquivo data/jogos
 
@@ -46,36 +46,45 @@ export default function Inicio() {
     <ScrollView style={styles.container} contentContainerStyle={styles.conteudo}>
       {/* Exibe o texto "Gamehub" como titulo usando o estilo "titulo" */}
       <Text style={styles.titulo}>Gamehub</Text>
+      {/* Define o titulo desta seção, usando o estlo "secaotitulo" */}
       <Text style={styles.subtitulo}>Seu universo de jogos em um só lugar</Text>
 
       {/* // -------------------------------
-      // BLOCO 2 - ESTRUTURA DA TELA
+      // BLOCO 2.1 - SEÇÂO DE JOGOS
       // ------------------------------- */}
 
-      
+      <FlatList
+        // Define a fonte de dados da lista - array "destaques"
+        data={destaques}
+        // Função que retorna uma chave única
+        keyExtractor={(item) => item.id}
+        // Faz a lista rolar
+        horizontal
+        // Oculta a barrinha de rolagem horizontal, deixando a interface mais limpa
+        showsVerticalScrollIndicator={false}
+        // Função chamada para cada elemento do array "data"
+        renderItem={(item) => <GameCard jogo={item}/>}
+      >
+        
+        {/* // -------------------------------
+        // BLOCO 2.2 - SEÇÂO "MAIS POPULARES"
+        // ------------------------------- */}
 
+      </FlatList>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
     padding: 24,
   },
-  main: {
-    flex: 1,
-    justifyContent: "center",
-    maxWidth: 960,
-    marginHorizontal: "auto",
-  },
-  title: {
-    fontSize: 64,
+  titulo: {
+    fontSize: 35,
     fontWeight: "bold",
   },
-  subtitle: {
-    fontSize: 36,
+  subtitulo: {
+    fontSize: 20  ,
     color: "#38434D",
   },
 });
