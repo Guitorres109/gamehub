@@ -3,15 +3,20 @@
 // O que fazemos aqui?
 // Esta é a tela inicial do App (rota "/")
 
-import { useRouter } from "expo-router"; //Acesso ao objeto Router, tem a função de navegação baseada em arquivos.
+import { StyleSheet, Text, View, ScrollView, FlatList, Pressable } from "react-native";
 
-import GameCard from "./components/Gamecard"; //Reutilizar componentes, isso evita duplicação e mentem a consistencia visual.
+//Acesso ao objeto Router, tem a função de navegação baseada em arquivos.
+import { useRouter } from "expo-router";
 
-import { jogos } from "./data/jogos" //Importante array de objetos do arquivo data/jogos
+//Reutilizar componentes, isso evita duplicação e mentem a consistencia visual.
+import GameCard from "./components/Gamecard";
 
+//Importante array de objetos do arquivo data/jogos
+import { jogos } from "./data/jogos"
+
+//Importante array de cores do arquivo data/tema
 import { cores } from "./data/tema"
 
-import { StyleSheet, Text, View, ScrollView, FlatList, Pressable } from "react-native";
 
 // View: Container basicos
 // Text: Para exibir textos
@@ -64,13 +69,45 @@ export default function Inicio() {
         showsVerticalScrollIndicator={false}
         // Função chamada para cada elemento do array "data"
         renderItem={(item) => <GameCard jogo={item}/>}
-      >
+      />
         
+
         {/* // -------------------------------
         // BLOCO 2.2 - SEÇÂO "MAIS POPULARES"
         // ------------------------------- */}
 
-      </FlatList>
+      <Text style={styles.secaoTitulo}>Mais Populares</Text>
+      {/* Titulo da segunda seção, reaproveitando o mesmo estilo "Seção Titulo" */}
+
+      <FlatList
+        // Desta vez a fonte de dados é o array "populares" (top 5 por nota)
+        data={populares}
+        // Mesma logica de chave unica no id do jogo
+        keyExtractor={(item) => item.id}
+        // Lista horizontal, igual da seção anterior
+        horizontal
+        // Esconder indicador de rolagem
+        showsHorizontalScrollIndicator
+        // Reutiliza o mesmo componente gamecard, provando que ele funciona em qualquer lista de jogos!
+        renderItem={({item}) => <GameCard jogo={item}/>}
+      />
+
+      {/* // -------------------------------
+        // BLOCO 2.3 - Botão "Ver todos jogos"
+        // ------------------------------- */}
+
+        {/* Pressable oferece mais controle sobre o estilo e feedback visual */}
+
+        <Pressable
+          // Aplica um estilo visual no botão
+          style={styles.botao}
+          // onPress: Função executada quando o usuario toca no botão
+          // router.push("./jogos") navega para a rota "/jogos"
+          onPress={() => router.push("./jogos")}
+        >
+          <Text style={styles.textobotao}>Ver todos os jogos</Text>
+        </Pressable>
+
     </ScrollView>
   );
 }
@@ -78,13 +115,40 @@ export default function Inicio() {
 const styles = StyleSheet.create({
   container: {
     padding: 24,
+    backgroundColor: cores.fundo,
   },
+  conteudo: {
+    padding: 20,
+    paddingBottom: 40, 
+  },  
   titulo: {
-    fontSize: 35,
+    fontSize: 32,
     fontWeight: "bold",
+    color: cores.textoPrincipal
   },
   subtitulo: {
-    fontSize: 20  ,
-    color: "#38434D",
+    fontSize: 15  ,
+    color: cores.textoSecundario,
+    marginTop: 4,
+    marginBotton: 24,
   },
+  secaoTitulo: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: cores.textoPrincipal,
+    marginTop: 8,
+    marginBottom: 12
+  },
+  botao: {
+    backgroundColor: cores.roxo,
+    borderRadius: 12,
+    paddingVertical: 14,
+    alignItems: "center",
+    marginTop: 24,
+  },
+  textobotao: {
+    color: cores.textoPrincipal,
+    fontSize: 16,
+    fontWeight: "bold", 
+  }
 });
