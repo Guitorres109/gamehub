@@ -9,13 +9,13 @@ import { StyleSheet, Text, View, ScrollView, FlatList, Pressable } from "react-n
 import { useRouter } from "expo-router";
 
 //Reutilizar componentes, isso evita duplicação e mentem a consistencia visual.
-import GameCard from "./components/Gamecard";
+import GameCard from "../components/Gamecard";
 
 //Importante array de objetos do arquivo data/jogos
-import { jogos } from "./data/jogos"
+import { jogos } from "../data/jogos"
 
 //Importante array de cores do arquivo data/tema
-import { cores } from "./data/tema"
+import { cores } from "../data/tema"
 
 
 // View: Container basicos
