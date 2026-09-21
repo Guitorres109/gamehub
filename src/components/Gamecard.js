@@ -26,5 +26,22 @@ export default function Gamecard ({jogo}){
 }
 
 const styles = StyleSheet.create({
-  
+  card: {
+    backgroundColor: cores.fundoCard,
+    borderRadius: 12,
+    overflow: "hidden",
+    width: 158,
+    marginRight: 12,
+    borderWidth: 1,
+    borderColor: cores.borda,
+  },
+  imagem: {
+    
+  },
+  info: {
+    padding: 10,
+  },
+  nome: {
+    color: cores.textoPrincipal,
+  }
 });
