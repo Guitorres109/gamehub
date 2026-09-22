@@ -36,12 +36,26 @@ const styles = StyleSheet.create({
     borderColor: cores.borda,
   },
   imagem: {
-    
+    width:"100%",
+    height: 110,
   },
   info: {
     padding: 10,
   },
   nome: {
     color: cores.textoPrincipal,
+    fontSize: 14,
+    fonrWeight: "Bold",
+  },
+  genero: {
+    color: cores.textoSecundario,
+    fontSize: 12,
+    marginTop: 2,
+  },
+  nota: {
+    color: cores.verde,
+    fontSize: 12,
+    marginTop: 4,
+    fontWeight: "600",
   }
 });

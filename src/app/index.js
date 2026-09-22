@@ -58,6 +58,8 @@ export default function Inicio() {
       // BLOCO 2.1 - SEÇÂO DE JOGOS
       // ------------------------------- */}
 
+
+      <Text style={styles.secaoTitulo}>Jogos em destaque</Text>
       <FlatList
         // Define a fonte de dados da lista - array "destaques"
         data={destaques}
@@ -68,7 +70,7 @@ export default function Inicio() {
         // Oculta a barrinha de rolagem horizontal, deixando a interface mais limpa
         showsVerticalScrollIndicator={false}
         // Função chamada para cada elemento do array "data"
-        renderItem={(item) => <GameCard jogo={item}/>}
+        renderItem={({ item }) => <GameCard jogo={item} />}
       />
         
 
